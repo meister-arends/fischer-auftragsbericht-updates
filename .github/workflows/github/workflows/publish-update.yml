@@ -1,0 +1,165 @@
+name: Update veröffentlichen
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - release-input/Fischer_Auftragsbericht_Aktuell.apk
+      - release-input/update.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fischer-auftragsbericht-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: APK prüfen und Release veröffentlichen
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository laden
+        uses: actions/checkout@v4
+
+      - name: Update-Dateien prüfen
+        id: manifest
+        shell: bash
+        run: |
+          python3 <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          from pathlib import Path
+
+          root = Path("release-input")
+          apk = root / "Fischer_Auftragsbericht_Aktuell.apk"
+          manifest_path = root / "update.json"
+
+          if not apk.is_file():
+              raise SystemExit(f"Fehlende Datei: {apk}")
+          if not manifest_path.is_file():
+              raise SystemExit(f"Fehlende Datei: {manifest_path}")
+
+          try:
+              manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          except Exception as exc:
+              raise SystemExit(f"update.json ist ungültig: {exc}") from exc
+
+          required = {
+              "versionCode": int,
+              "versionName": str,
+              "apkUrl": str,
+              "sizeBytes": int,
+              "sha256": str,
+              "title": str,
+              "message": str,
+              "releaseNotes": list,
+          }
+          for key, expected_type in required.items():
+              value = manifest.get(key)
+              if not isinstance(value, expected_type):
+                  raise SystemExit(
+                      f"Fehlender oder ungültiger Wert in update.json: {key}"
+                  )
+
+          if manifest["versionCode"] < 1:
+              raise SystemExit("versionCode muss größer als 0 sein")
+
+          version_name = manifest["versionName"].strip()
+          if not re.fullmatch(r"[0-9]+(?:\.[0-9]+){1,3}(?:-[0-9A-Za-z.-]+)?", version_name):
+              raise SystemExit(f"Ungültige versionName: {version_name}")
+
+          expected_url = (
+              "https://github.com/meister-arends/"
+              "fischer-auftragsbericht-updates/releases/latest/download/"
+              "Fischer_Auftragsbericht_Aktuell.apk"
+          )
+          if manifest["apkUrl"] != expected_url:
+              raise SystemExit(
+                  "apkUrl stimmt nicht mit der festen GitHub-Downloadadresse überein"
+              )
+
+          actual_size = apk.stat().st_size
+          expected_size = manifest["sizeBytes"]
+          if actual_size != expected_size:
+              raise SystemExit(
+                  f"Falsche APK-Größe: erwartet {expected_size}, vorhanden {actual_size}"
+              )
+
+          digest = hashlib.sha256(apk.read_bytes()).hexdigest()
+          expected_digest = manifest["sha256"].strip().lower()
+          if not re.fullmatch(r"[0-9a-f]{64}", expected_digest):
+              raise SystemExit("Ungültige SHA-256-Prüfsumme in update.json")
+          if digest != expected_digest:
+              raise SystemExit(
+                  f"SHA-256 stimmt nicht: erwartet {expected_digest}, vorhanden {digest}"
+              )
+
+          tag = manifest.get("releaseTag")
+          if tag is None:
+              tag_version = re.sub(r"-(?:test|alpha|beta|rc)(?:[.-].*)?$", "", version_name)
+              tag = f"v{tag_version}"
+          if not isinstance(tag, str) or not re.fullmatch(r"v[0-9A-Za-z][0-9A-Za-z._-]*", tag):
+              raise SystemExit(f"Ungültiger releaseTag: {tag!r}")
+
+          title = manifest.get("releaseTitle") or f"Fischer Auftragsbericht {version_name}"
+          if not isinstance(title, str) or not title.strip():
+              raise SystemExit("Ungültiger Release-Titel")
+
+          notes = [str(item).strip() for item in manifest["releaseNotes"] if str(item).strip()]
+          note_lines = [manifest["message"].strip(), "", "Änderungen:"]
+          note_lines.extend(f"- {item}" for item in notes)
+          Path("release-notes.md").write_text(
+              "\n".join(note_lines).strip() + "\n", encoding="utf-8"
+          )
+
+          output = Path(os.environ["GITHUB_OUTPUT"])
+          with output.open("a", encoding="utf-8") as handle:
+              handle.write(f"tag={tag}\n")
+              handle.write(f"title={title.strip()}\n")
+              handle.write(f"version_name={version_name}\n")
+              handle.write(f"sha256={digest}\n")
+              handle.write(f"size={actual_size}\n")
+
+          print(f"Version: {version_name}")
+          print(f"Tag: {tag}")
+          print(f"APK-Größe: {actual_size} Byte")
+          print(f"SHA-256: {digest}")
+          PY
+
+      - name: Release erstellen oder aktualisieren
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.manifest.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.manifest.outputs.title }}
+        shell: bash
+        run: |
+          APK="release-input/Fischer_Auftragsbericht_Aktuell.apk"
+          MANIFEST="release-input/update.json"
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$APK" "$MANIFEST" --clobber
+            gh release edit "$RELEASE_TAG" \
+              --title "$RELEASE_TITLE" \
+              --notes-file release-notes.md \
+              --latest
+          else
+            gh release create "$RELEASE_TAG" "$APK" "$MANIFEST" \
+              --target "$GITHUB_SHA" \
+              --title "$RELEASE_TITLE" \
+              --notes-file release-notes.md \
+              --latest
+          fi
+
+      - name: Ergebnis ausgeben
+        env:
+          RELEASE_TAG: ${{ steps.manifest.outputs.tag }}
+        run: |
+          echo "Release $RELEASE_TAG wurde erfolgreich veröffentlicht."
+          echo "Manifest: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/update.json"
+          echo "APK: https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk"
