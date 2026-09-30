@@ -1,17 +1,19 @@
 {
   "schemaVersion": 1,
-  "versionCode": 18,
-  "versionName": "0.6.5-test",
+  "versionCode": 19,
+  "versionName": "0.7.0-test",
   "releaseDate": "2026-09-30",
   "mandatory": false,
   "apkUrl": "https://github.com/meister-arends/fischer-auftragsbericht-updates/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk",
-  "sizeBytes": 1065618,
-  "sha256": "49fef29f28fc2e7816f38af6d747233f12843703e476394b30a010850d74a46c",
-  "title": "Neue Version 0.6.5 verfügbar",
-  "message": "Der neue GitHub-Updatekanal ist bereit zum Funktionstest.",
+  "sizeBytes": 1069927,
+  "sha256": "dd05e1b7a0331f8d12a9b6a9438fab962dd4e84f88a6dc2cb9ea4a0d61a862fc",
+  "title": "Neue Version 0.7.0 verfügbar",
+  "message": "Die Bedienoberfläche wurde kompakter und um eine direkte PDF-Vorschau ergänzt.",
   "releaseNotes": [
-    "Dauerhafte Downloadadressen über GitHub Releases",
-    "Verständlicherer technischer Hinweis bei einer fehlgeschlagenen manuellen Updateprüfung",
-    "Alle bisherigen Funktionen und Korrekturen bleiben erhalten"
+    "Vorschau, Speichern und Senden direkt im Kopfbereich",
+    "Temporäre PDF-Vorschau ohne Archivierung oder Löschen der Unterschrift",
+    "Kilometerpauschale deutlich hervorgehoben",
+    "Arbeitszeitfelder einheitlich ausgerichtet",
+    "Kompakte Kacheln im Abschlussbereich"
   ]
 }
