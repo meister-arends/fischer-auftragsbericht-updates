@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "versionCode": 13,
+  "versionName": "0.6.0-test",
+  "releaseDate": "2026-09-30",
+  "mandatory": false,
+  "apkUrl": "https://horstfischerelektrotechnik-my.sharepoint.com/:u:/g/personal/h_fischer_horst-fischer-elektrotechnik_de/IQAek47wUyjYSrWRreU7ThnHAfY5pK59nzdLr9UtVAeTt_Q?e=aDaGUB&download=1",
+  "sizeBytes": 1065618,
+  "sha256": "49c175bd56e8f43d7c68cc086b39b708719064cec6e09d573958c3905e30d2e9",
+  "title": "Neue Version 0.6.0 verfügbar",
+  "message": "Einstellungen und eine manuell bestätigte Updatefunktion wurden ergänzt.",
+  "releaseNotes": [
+    "Einstellungsmenü durch Antippen des Fischer-Logos",
+    "Mitarbeiterverwaltung mit auswählbarem Standard-Mitarbeiter",
+    "Einstellbare Standard-Ziel-Mail-Adresse",
+    "Hinweis bei verfügbaren Updates ohne automatischen APK-Download",
+    "Prüfung von Dateigröße und SHA-256-Prüfsumme vor der Installation"
+  ]
+}
