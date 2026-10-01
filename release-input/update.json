@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
-  "versionCode": 19,
-  "versionName": "0.7.0-test",
-  "releaseDate": "2026-09-30",
+  "versionCode": 20,
+  "versionName": "0.8.0-test",
+  "releaseDate": "2026-10-01",
   "mandatory": false,
   "apkUrl": "https://github.com/meister-arends/fischer-auftragsbericht-updates/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk",
-  "sizeBytes": 1069927,
-  "sha256": "dd05e1b7a0331f8d12a9b6a9438fab962dd4e84f88a6dc2cb9ea4a0d61a862fc",
-  "title": "Neue Version 0.7.0 verfügbar",
-  "message": "Die Bedienoberfläche wurde kompakter und um eine direkte PDF-Vorschau ergänzt.",
+  "sizeBytes": 1074023,
+  "sha256": "46150e832e23ee76dad1cc128c897ce3c1aeab9c82d0506872e53f27fe95e13d",
+  "title": "Neue Version 0.8.0 verfügbar",
+  "message": "PDF-Fortsetzungen, Fotodokumentation und Mitarbeiterverwaltung wurden erweitert.",
   "releaseNotes": [
-    "Vorschau, Speichern und Senden direkt im Kopfbereich",
-    "Temporäre PDF-Vorschau ohne Archivierung oder Löschen der Unterschrift",
-    "Kilometerpauschale deutlich hervorgehoben",
-    "Arbeitszeitfelder einheitlich ausgerichtet",
-    "Kompakte Kacheln im Abschlussbereich"
+    "Aufzählungspunkte bleiben bei PDF-Seitenumbrüchen zusammen",
+    "Materialfortsetzungen verwenden eine eigene Hinweiszeile",
+    "Querformatfotos einzeln und Hochformatfotos paarweise angeordnet",
+    "Eingefügte Fotos lassen sich direkt in der App ansehen",
+    "Sortierte Mitarbeiterliste mit Standardmonteur je Endgerät",
+    "Größere Laufweite für besser lesbare PDF-Schrift"
   ]
 }
