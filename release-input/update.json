@@ -1,20 +1,15 @@
 {
   "schemaVersion": 1,
-  "versionCode": 20,
-  "versionName": "0.8.0-test",
-  "releaseDate": "2026-10-01",
+  "versionCode": 21,
+  "versionName": "0.8.1-test",
+  "releaseDate": "2026-10-02",
   "mandatory": false,
   "apkUrl": "https://github.com/meister-arends/fischer-auftragsbericht-updates/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk",
   "sizeBytes": 1074023,
-  "sha256": "46150e832e23ee76dad1cc128c897ce3c1aeab9c82d0506872e53f27fe95e13d",
-  "title": "Neue Version 0.8.0 verfügbar",
-  "message": "PDF-Fortsetzungen, Fotodokumentation und Mitarbeiterverwaltung wurden erweitert.",
+  "sha256": "f664b604e2eb4dbf205bef068e40d5fa28a22138c02d3aafd5b6affb7fc718b5",
+  "title": "Neue Version 0.8.1 verfügbar",
+  "message": "Der Unterschriftshinweis auf mehrseitigen Berichten wurde sauber ausgerichtet.",
   "releaseNotes": [
-    "Aufzählungspunkte bleiben bei PDF-Seitenumbrüchen zusammen",
-    "Materialfortsetzungen verwenden eine eigene Hinweiszeile",
-    "Querformatfotos einzeln und Hochformatfotos paarweise angeordnet",
-    "Eingefügte Fotos lassen sich direkt in der App ansehen",
-    "Sortierte Mitarbeiterliste mit Standardmonteur je Endgerät",
-    "Größere Laufweite für besser lesbare PDF-Schrift"
+    "Hinweis auf die Kundenunterschrift auf Seite 1 im Unterschriftsfeld zentriert"
   ]
 }
