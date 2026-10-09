@@ -1,19 +1,23 @@
 {
   "schemaVersion": 1,
-  "versionCode": 13,
-  "versionName": "0.6.0-test",
-  "releaseDate": "2026-09-30",
+  "versionCode": 25,
+  "versionName": "0.9.0-test",
+  "releaseDate": "2026-10-09",
   "mandatory": false,
-  "apkUrl": "https://horstfischerelektrotechnik-my.sharepoint.com/:u:/g/personal/h_fischer_horst-fischer-elektrotechnik_de/IQAek47wUyjYSrWRreU7ThnHAfY5pK59nzdLr9UtVAeTt_Q?e=aDaGUB&download=1",
-  "sizeBytes": 1065618,
-  "sha256": "49c175bd56e8f43d7c68cc086b39b708719064cec6e09d573958c3905e30d2e9",
-  "title": "Neue Version 0.6.0 verfügbar",
-  "message": "Einstellungen und eine manuell bestätigte Updatefunktion wurden ergänzt.",
+  "apkUrl": "https://github.com/meister-arends/fischer-auftragsbericht-updates/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk",
+  "sizeBytes": 1094579,
+  "sha256": "cfa00438e4b957eb88abee745cd80b71cb2fe5bb06aa8ed17d95424fef87547e",
+  "title": "Neue Version 0.9.0 verfügbar",
+  "message": "Die App enthält jetzt eigene Formulare und PDF-Ausgaben für Fertigmeldungen und Materialaufmaße sowie einen Feedbackbereich.",
   "releaseNotes": [
-    "Einstellungsmenü durch Antippen des Fischer-Logos",
-    "Mitarbeiterverwaltung mit auswählbarem Standard-Mitarbeiter",
-    "Einstellbare Standard-Ziel-Mail-Adresse",
-    "Hinweis bei verfügbaren Updates ohne automatischen APK-Download",
-    "Prüfung von Dateigröße und SHA-256-Prüfsumme vor der Installation"
+    "Neuer Dokumenttyp Fertigmeldung mit Auswahl für PV-Anlage, Wärmepumpe und Wallbox",
+    "Drei verpflichtende Nachweisfotos mit Vollständigkeitsprüfung vor PDF-Erstellung und Versand",
+    "Beliebig viele zusätzliche Fotos mit frei editierbarer Beschreibung",
+    "Eigene Fertigmeldungs-PDF im Fischer-Design",
+    "Neuer Dokumenttyp Materialaufmaß mit Räumen als Spalten und Artikeln als Zeilen",
+    "Automatische Gesamtsummen sowie Sortieren, Umbenennen und Löschen von Räumen und Artikeln",
+    "Materialaufmaß-PDF im DIN-A4-Querformat mit automatischen Folgeseiten",
+    "Feedback und Fehlerberichte aus den Einstellungen mit Monteur, App-Version und Gerätedaten",
+    "Dauerhafte Speicherung aufgenommener Fotos im Bilderordner bleibt enthalten"
   ]
 }
