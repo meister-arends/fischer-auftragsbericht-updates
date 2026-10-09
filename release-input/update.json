@@ -1,18 +1,19 @@
 {
   "schemaVersion": 1,
-  "versionCode": 22,
-  "versionName": "0.8.2-test",
-  "releaseDate": "2026-10-02",
+  "versionCode": 13,
+  "versionName": "0.6.0-test",
+  "releaseDate": "2026-09-30",
   "mandatory": false,
-  "apkUrl": "https://github.com/meister-arends/fischer-auftragsbericht-updates/releases/latest/download/Fischer_Auftragsbericht_Aktuell.apk",
-  "sizeBytes": 1074023,
-  "sha256": "ae4cee7b3473fe61df2a94386c65115a445895e9c707e7935e2d467c438e1a2d",
-  "title": "Neue Version 0.8.2 verfügbar",
-  "message": "Ausgewählte Bilder werden jetzt vollständig lokal übernommen und in höherer Qualität verarbeitet.",
+  "apkUrl": "https://horstfischerelektrotechnik-my.sharepoint.com/:u:/g/personal/h_fischer_horst-fischer-elektrotechnik_de/IQAek47wUyjYSrWRreU7ThnHAfY5pK59nzdLr9UtVAeTt_Q?e=aDaGUB&download=1",
+  "sizeBytes": 1065618,
+  "sha256": "49c175bd56e8f43d7c68cc086b39b708719064cec6e09d573958c3905e30d2e9",
+  "title": "Neue Version 0.6.0 verfügbar",
+  "message": "Einstellungen und eine manuell bestätigte Updatefunktion wurden ergänzt.",
   "releaseNotes": [
-    "Externe Bilder werden beim Einfügen vollständig in den lokalen App-Speicher kopiert",
-    "PDF-Erstellung ist nicht mehr von später gelieferten Galerie- oder Cloud-Vorschauen abhängig",
-    "Höhere Farbtiefe bei Bildvorschau und PDF-Ausgabe",
-    "Hinweis auf die Kundenunterschrift auf Seite 1 bleibt zentriert"
+    "Einstellungsmenü durch Antippen des Fischer-Logos",
+    "Mitarbeiterverwaltung mit auswählbarem Standard-Mitarbeiter",
+    "Einstellbare Standard-Ziel-Mail-Adresse",
+    "Hinweis bei verfügbaren Updates ohne automatischen APK-Download",
+    "Prüfung von Dateigröße und SHA-256-Prüfsumme vor der Installation"
   ]
 }
